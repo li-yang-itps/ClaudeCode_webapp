@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Claude AI Chat with File Support</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="chat-layout">
+    <!-- Sidebar for conversation history -->
+    <aside class="sidebar">
+      <div class="sidebar-header">
+        <button id="newChatBtn" class="new-chat-btn">+ New Chat</button>
+      </div>
+      <div class="conversations-list" id="conversationsList">
+        <!-- Conversation items will be rendered here -->
+      </div>
+    </aside>
+
+    <!-- Main chat area -->
+    <div class="chat-container">
+      <!-- Header -->
+      <header class="chat-header">
+        <div class="header-left">
+          <p id="currentConvInfo">New conversation</p>
+        </div>
+        <div class="header-right">
+        </div>
+      </header>
+
+      <!-- Messages area -->
+      <div class="messages-container" id="messagesArea">
+        <div class="welcome-message">
+          <h2>Welcome to Claude AI Chat</h2>
+          <p>Start a conversation or upload a file to begin</p>
+          <div class="welcome-features">
+            <div class="feature" data-action="chat" onclick="window.handleFeatureClick('chat')">💬 <strong>Chat</strong><br>Ask questions and have conversations</div>
+            <div class="feature" data-action="upload" onclick="window.handleFeatureClick('upload')">📎 <strong>Upload Files</strong><br>Analyze code, documents, and more</div>
+            <div class="feature" data-action="history" onclick="window.handleFeatureClick('history')">🕐 <strong>History</strong><br>All conversations saved in sidebar</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Loading indicator -->
+      <div id="loadingIndicator" class="loading-indicator hidden">
+        <div class="typing-indicator">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      </div>
+
+      <!-- Input area -->
+      <div class="input-area">
+        <!-- File attachments display -->
+        <div class="file-attachments" id="fileAttachments"></div>
+
+        <!-- Input wrapper -->
+        <div class="input-wrapper">
+          <!-- File upload -->
+          <input type="file" id="fileInput" hidden multiple>
+          <button id="fileBtn" class="input-btn file-btn" title="Attach file">📎</button>
+
+          <!-- Text input -->
+          <input
+            type="text"
+            id="messageInput"
+            class="message-input"
+            placeholder="Type your message..."
+            autocomplete="off">
+
+          <!-- Send button -->
+          <button id="sendBtn" class="input-btn send-btn" title="Send message">➤</button>
+        </div>
+      </div>
+
+      <!-- Settings button -->
+      <button id="settingsBtn" class="settings-btn" title="Settings" onclick="window.openSettings()">⚙️</button>
+    </div>
+  </div>
+
+  <!-- Settings Modal -->
+  <div id="settingsModal" class="settings-modal hidden">
+    <div class="settings-content">
+      <div class="settings-header">
+        <h2>Settings</h2>
+        <button id="closeSettingsBtn" class="close-btn">✕</button>
+      </div>
+
+      <div class="settings-body">
+        <!-- Theme Section -->
+        <div class="settings-section">
+          <h3>Theme</h3>
+          <div class="settings-group">
+            <label>Color Scheme:</label>
+            <select id="themeSelect" class="settings-select">
+              <option value="dark">Dark (Claude Code)</option>
+              <option value="light">Light</option>
+              <option value="purple">Purple</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Language Section -->
+        <div class="settings-section">
+          <h3>Language</h3>
+          <div class="settings-group">
+            <label>Select Language:</label>
+            <select id="languageSelect" class="settings-select">
+              <option value="en">English</option>
+              <option value="zh">中文 (Chinese)</option>
+              <option value="ja">日本語 (Japanese)</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- User Info Section -->
+        <div class="settings-section">
+          <h3>Account Information</h3>
+          <div class="settings-group">
+            <label>Session ID:</label>
+            <div class="info-display" id="sessionIdDisplay">-</div>
+          </div>
+          <div class="settings-group">
+            <label>Region:</label>
+            <div class="info-display" id="regionDisplay">-</div>
+          </div>
+          <div class="settings-group">
+            <label>API Type:</label>
+            <div class="info-display" id="apiTypeDisplay">-</div>
+          </div>
+          <div class="settings-group">
+            <label>Active Conversations:</label>
+            <div class="info-display" id="conversationCountDisplay">-</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="settings-footer">
+        <button id="saveSettingsBtn" class="save-btn">Save Settings</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Markdown parsing library -->
+  <script src="https://cdn.jsdelivr.net/npm/markdown-it@13.0.1/dist/markdown-it.umd.min.js"></script>
+
+  <!-- Syntax highlighting library -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/atom-one-dark.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+
+  <script src="script.js"></script>
+</body>
+</html>
