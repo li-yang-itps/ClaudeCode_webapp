@@ -1,2 +1,2 @@
 # ClaudeCode_webapp
-ClaudeCodeをWebアプリバージョン
+ClaudeCode_Web
