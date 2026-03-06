@@ -59,10 +59,6 @@ npm start
 
 その後、ブラウザで `http://localhost:3002` を開きます。
 
-### 詳細なガイド
-
-詳しい設定方法やトラブルシューティングは [DEPLOYMENT.md](./DEPLOYMENT.md) を参照してください。
-
 ### Makefile コマンド
 
 ```bash
@@ -120,7 +116,6 @@ ClaudeCode_webapp/
 ├── server.js              # Express バックエンドサーバー
 ├── package.json           # プロジェクト設定
 ├── Makefile              # ワンコマンドセットアップスクリプト
-├── DEPLOYMENT.md         # 詳細な展開ガイド
 ├── .env.example          # 環境変数テンプレート
 ├── .gitignore            # Git 無視ルール
 ├── README.md             # プロジェクト説明（このファイル）
@@ -209,7 +204,6 @@ Content-Type: multipart/form-data
 - API キーが有効で期限切れでないか確認
 - ネットワーク接続を確認
 
-詳細は [DEPLOYMENT.md](./DEPLOYMENT.md#トラブルシューティング) を参照してください。
 
 ### 問題: ファイルが大きすぎる
 - ファイルサイズを 100MB 以内に保つ
