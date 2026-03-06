@@ -1,4 +1,4 @@
-// Session and conversation management
+// セッションと会話管理
 let sessionId = null;
 let conversationId = null;
 let messages = [];
@@ -6,10 +6,10 @@ let attachedFiles = [];  // Changed to array for multiple files
 let isSending = false;
 let conversationsList = [];
 
-// Constants
+// 定数
 const MAX_FILES = 10;
 
-// DOM Elements
+// DOM 要素
 const fileBtn = document.getElementById('fileBtn');
 const fileInput = document.getElementById('fileInput');
 const messageInput = document.getElementById('messageInput');
@@ -22,7 +22,7 @@ const conversationsListEl = document.getElementById('conversationsList');
 const fileAttachments = document.getElementById('fileAttachments');
 const currentConvInfo = document.getElementById('currentConvInfo');
 
-// Initialize
+// チャットを初期化
 function initChat() {
   const storedSessionId = sessionStorage.getItem('sessionId');
   sessionId = storedSessionId || generateUUID();
@@ -528,7 +528,7 @@ function scrollToBottom() {
   }, 0);
 }
 
-// Settings management
+// 設定管理
 let currentTheme = 'dark';
 let currentLanguage = 'en';
 
@@ -888,7 +888,7 @@ function updateUserInfo() {
   document.getElementById('conversationCountDisplay').textContent = conversationsList.length.toString();
 }
 
-// Global settings functions
+// グローバル設定関数
 window.openSettings = function() {
   console.log('[openSettings] Called');
   const settingsModal = document.getElementById('settingsModal');
@@ -906,7 +906,7 @@ window.closeSettings = function() {
   }
 };
 
-// Start the chat
+// チャットを開始
 document.addEventListener('DOMContentLoaded', () => {
   console.log('[Init] DOMContentLoaded triggered');
 
