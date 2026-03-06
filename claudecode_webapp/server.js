@@ -1,3 +1,6 @@
+// Claude AI チャットアプリケーション - バックエンドサーバー
+// ファイルアップロード、マルチターン会話、セッション管理を処理
+
 const express = require('express');
 const multer = require('multer');
 const cors = require('cors');
@@ -17,10 +20,10 @@ const {
 
 const mammoth = require('mammoth');
 
-// Note: If behind corporate proxy with CA certificate injection,
-// add the CA certificate to Node's certificate chain instead of disabling verification
-// Example: process.env.NODE_EXTRA_CA_CERTS = 'path/to/ca-bundle.crt'
+// 注意: 企業プロキシ経由の場合、CA 証明書を Node の証明書チェーンに追加してください
+// 例: process.env.NODE_EXTRA_CA_CERTS = 'path/to/ca-bundle.crt'
 
+// サーバーの初期化
 const app = express();
 const PORT = process.env.PORT || 3002;
 const AWS_REGION = process.env.AWS_REGION || 'ap-northeast-1';

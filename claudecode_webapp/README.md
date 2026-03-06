@@ -1,173 +1,186 @@
-# Claude 文件上传分析工具
+# Claude ファイルアップロード分析ツール
 
-一个轻量级的 Web 应用，让你可以上传文件到 Claude AI 进行智能分析。
+軽量な Web アプリケーション。ファイルを Claude AI にアップロードして、智能分析を実行できます。
 
-## 功能特性
+## 機能特性
 
-- 💬 **ChatGPT 风格的聊天界面** - 多轮对话，实时响应
-- 📎 **文件上传分析** - 在聊天中上传文件进行分析
-- 📜 **对话历史** - 侧边栏显示所有对话，随时切换
-- 🎨 **Markdown 渲染** - 代码块带语法高亮
-- 📱 **响应式设计** - 完美支持手机、平板、桌面
-- ⚡ **快速启动** - 双击 start.bat 即可运行
+- 💬 **ChatGPT スタイルのチャットインターフェース** - 複数ターンの会話、リアルタイム応答
+- 📎 **ファイルアップロード分析** - チャットでファイルをアップロードして分析
+- 📜 **会話履歴** - サイドバーにすべての会話を表示、いつでも切り替え可能
+- 🎨 **Markdown レンダリング** - コードブロックに構文ハイライト
+- 📱 **レスポンシブデザイン** - スマートフォン、タブレット、デスクトップに完全対応
+- ⚡ **高速起動** - npm で簡単に実行
 
-## 支持的文件类型
+## サポートされるファイルタイプ
 
-- 文本文件: `.txt`, `.md`, `.json`, `.yaml`, `.yml`, `.toml`, `.xml`, `.html`, `.css`, `.scss`
-- 代码文件: `.py`, `.js`, `.ts`, `.jsx`, `.tsx`, `.java`, `.cpp`, `.c`, `.go`, `.rs`, `.rb`, `.php`, `.sh`, `.sql`
-- 文档: `.pdf`, `.doc`, `.docx`, `.xls`, `.xlsx`, `.csv`
+- テキストファイル: `.txt`, `.md`, `.json`, `.yaml`, `.yml`, `.toml`, `.xml`, `.html`, `.css`, `.scss`
+- コードファイル: `.py`, `.js`, `.ts`, `.jsx`, `.tsx`, `.java`, `.cpp`, `.c`, `.go`, `.rs`, `.rb`, `.php`, `.sh`, `.sql`
+- ドキュメント: `.pdf`, `.doc`, `.docx`, `.xls`, `.xlsx`, `.csv`
 
-最大文件大小: 100MB
+最大ファイルサイズ: 100MB
 
-## 快速开始
+## 前提条件
 
-### 前提条件
+- Node.js 14+ と npm
+- AWS Bedrock 認証情報（推奨）または Claude API キー
 
-- Node.js 14+ 和 npm
-- AWS Bedrock 凭证（推荐）或 Claude API 密钥
-
-### 最快启动方式
-
-**双击 `start.bat` 文件即可！**
-
-脚本会自动：
-- 安装依赖（如需要）
-- 启动服务器
-- 打开浏览器访问 http://localhost:3000
-
-### 手动启动步骤
+## インストール手順
 
 ```bash
-# 进入项目目录
-cd C:\Users\li.yang\Desktop\claude-file-uploader
+# プロジェクトディレクトリに入る
+cd claudecode_webapp
 
-# 安装依赖（首次运行）
+# 依存関係をインストール（初回実行時）
 npm install
 
-# 启动服务器
+# サーバーを起動
 npm start
 ```
 
-然后在浏览器打开：`http://localhost:3000`
+その後、ブラウザで `http://localhost:3002` を開きます。
 
 ## 使用方法
 
-### 基础操作
+### 基本操作
 
-1. **发送消息**
-   - 在输入框输入问题或命令
-   - 按 Enter 或点击 ➤ 按钮发送
+1. **メッセージ送信**
+   - 入力フィールドに質問またはコマンドを入力
+   - Enter キーを押すか、➤ ボタンをクリックして送信
 
-2. **上传文件**
-   - 点击 📎 按钮选择文件
-   - 输入问题后发送（文件会在上下文中分析）
+2. **ファイルアップロード**
+   - 📎 ボタンをクリックしてファイルを選択
+   - 質問を入力して送信（ファイルは文脈に含まれて分析されます）
 
-3. **查看历史**
-   - 左侧边栏显示所有对话
-   - 点击任何对话即可切换查看
+3. **履歴の表示**
+   - 左側のサイドバーにすべての会話を表示
+   - いずれかの会話をクリックして切り替え
 
-4. **新建对话**
-   - 点击左上角 "+ New Chat" 创建新对话
-   - 点击 🗑️ 清空当前对话
+4. **新しい会話を作成**
+   - 左上の "+ New Chat" をクリックして新しい会話を作成
+   - 🗑️ をクリックして現在の会話をクリア
 
-### 支持的文件类型
+### サポートされるファイルタイプ
 
-代码: `.py`, `.js`, `.ts`, `.java`, `.cpp`, `.go` 等 60+ 种
-文档: `.txt`, `.md`, `.pdf`, `.docx` 等
-配置: `.yaml`, `.json`, `.toml` 等
+コード: `.py`, `.js`, `.ts`, `.java`, `.cpp`, `.go` など 60+ 言語
+ドキュメント: `.txt`, `.md`, `.pdf`, `.docx` など
+設定: `.yaml`, `.json`, `.toml` など
 
-最大文件: 100MB
+最大ファイル: 100MB
 
-## 环境变量
+## 環境変数
 
-| 变量 | 说明 | 必需 |
+| 変数 | 説明 | 必須 |
 |------|------|------|
-| `CLAUDE_API_KEY` | Anthropic Claude API 密钥 | ✅ |
-| `PORT` | 服务器端口（默认: 3000） | ❌ |
+| `CLAUDE_API_KEY` | Anthropic Claude API キー | ✅ |
+| `AWS_REGION` | AWS リージョン（デフォルト: ap-northeast-1） | ❌ |
+| `PORT` | サーバーポート（デフォルト: 3002） | ❌ |
 
-## 项目结构
+## プロジェクト構造
 
 ```
-claude-file-uploader/
-├── server.js              # Express 后端服务器
-├── package.json           # 项目配置
-├── .env.example          # 环境变量示例
-├── .gitignore            # Git 忽略规则
-├── README.md             # 项目说明（本文件）
+claudecode_webapp/
+├── server.js              # Express バックエンドサーバー
+├── package.json           # プロジェクト設定
+├── .env                   # 環境変数ファイル
+├── .gitignore            # Git 無視ルール
+├── README.md             # プロジェクト説明（このファイル）
 ├── public/
-│   ├── index.html        # 前端 HTML
-│   ├── styles.css        # 样式表
-│   └── script.js         # 前端 JavaScript
-└── uploads/              # 临时上传文件夹（自动创建）
+│   ├── index.html        # フロントエンド HTML
+│   ├── styles.css        # スタイルシート
+│   ├── script.js         # フロントエンド JavaScript
+│   └── technopro-logo.png # ロゴ
+└── node_modules/         # 依存パッケージ（自動生成）
 ```
 
-## 技术栈
+## 技術スタック
 
-- **后端**: Express.js
-- **文件上传**: Multer
-- **API 调用**: Axios
-- **前端**: Vanilla JavaScript
-- **样式**: CSS3 + 响应式设计
+- **バックエンド**: Express.js + AWS Bedrock Runtime
+- **ファイルアップロード**: Multer
+- **API 呼び出し**: HTTPS（ネイティブ Node.js モジュール）
+- **フロントエンド**: Vanilla JavaScript
+- **スタイル**: CSS3 + レスポンシブデザイン
+- **マークダウンレンダリング**: markdown-it
+- **構文ハイライト**: highlight.js
 
-## 安全特性
+## セキュリティ機能
 
-- ✅ 文件在分析后立即删除
-- ✅ 支持文件类型白名单
-- ✅ 文件大小限制 (100MB)
-- ✅ CORS 支持
-- ✅ 环境变量保护 API 密钥
+- ✅ ファイルは分析後直ちに削除
+- ✅ ホワイトリストベースのファイルタイプチェック
+- ✅ ファイルサイズ制限（100MB）
+- ✅ CORS サポート
+- ✅ 環境変数による API キー保護
 
-## API 端点
+## API エンドポイント
 
-### POST `/api/upload`
-上传并分析文件
+### POST `/api/chat`
+ファイルサポート付きマルチターン会話
 
-**请求体:**
+**リクエスト体:**
 ```
 Content-Type: multipart/form-data
-- file: 要上传的文件
-- prompt: (可选) 分析提示
+- sessionId: セッション ID（必須）
+- conversationId: 会話 ID（オプション、存在しない場合は新規作成）
+- message: テキストメッセージ（必須）
+- files: アップロードファイル（オプション、最大 10 個）
+- language: UI 言語（オプション）
 ```
 
-**响应:**
+**レスポンス:**
 ```json
 {
   "success": true,
-  "fileName": "example.txt",
-  "analysis": "Claude 的分析结果..."
+  "conversationId": "uuid",
+  "sessionId": "uuid",
+  "message": { "id": "uuid", "role": "assistant", "content": "...", "timestamp": "..." },
+  "history": [...]
 }
 ```
 
-### GET `/api/health`
-健康检查
+### GET `/api/session/:sessionId/conversations`
+セッションの会話一覧を取得
 
-**响应:**
+### GET `/api/conversation/:conversationId`
+会話履歴を取得
+
+### DELETE `/api/conversation/:conversationId`
+会話を削除
+
+### POST `/api/conversation/:conversationId/star`
+会話にスターを付ける/外す
+
+### GET `/api/health`
+健康チェック
+
+**レスポンス:**
 ```json
 {
   "status": "ok",
-  "timestamp": "2024-01-01T12:00:00.000Z"
+  "timestamp": "2024-01-01T12:00:00.000Z",
+  "apiType": "bedrock",
+  "bedrockConfigured": true,
+  "region": "ap-northeast-1"
 }
 ```
 
-## 故障排除
+## トラブルシューティング
 
-### 问题: 无法连接到 API
-- 检查 `.env` 文件中的 `CLAUDE_API_KEY` 是否正确
-- 确保 API 密钥有效且未过期
-- 检查网络连接
+### 問題: API に接続できない
+- `.env` ファイルの `CLAUDE_API_KEY` または AWS 認証情報を確認
+- API キーが有効で期限切れでないか確認
+- ネットワーク接続を確認
 
-### 问题: 文件太大
-- 将文件大小控制在 100MB 以内
-- 考虑分割大文件
+### 問題: ファイルが大きすぎる
+- ファイルサイズを 100MB 以内に保つ
+- 大きなファイルを分割することを検討
 
-### 问题: 不支持的文件类型
-- 检查文件扩展名是否在支持列表中
-- 重命名文件时使用正确的扩展名
+### 問題: サポートされていないファイルタイプ
+- ファイル拡張子がサポートリストに含まれているか確認
+- ファイルを正しい拡張子にリネーム
 
-## 许可证
+## ライセンス
 
 MIT
 
-## 支持
+## サポート
 
-如有问题或建议，请联系开发者或创建 Issue。
+問題または提案がある場合は、GitHub Issues を作成してください。
