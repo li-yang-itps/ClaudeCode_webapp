@@ -13,11 +13,13 @@ require('dotenv').config();
 
 const execAsync = promisify(exec);
 
+// AWS Bedrock SDK をインポート（Claude の呼び出し用）
 const {
   BedrockRuntimeClient,
   InvokeModelCommand
 } = require('@aws-sdk/client-bedrock-runtime');
 
+// Word ドキュメント処理用ライブラリ
 const mammoth = require('mammoth');
 
 // 注意: 企業プロキシ経由の場合、CA 証明書を Node の証明書チェーンに追加してください
@@ -88,15 +90,17 @@ try {
   console.error('Failed to initialize Bedrock client:', error.message);
 }
 
-// Create uploads directory if it doesn't exist
+// アップロードディレクトリの作成（存在しない場合）
 const uploadsDir = path.join(__dirname, 'uploads');
 if (!fs.existsSync(uploadsDir)) {
   fs.mkdirSync(uploadsDir, { recursive: true });
 }
 
-// Conversation management (session-based, in-memory)
-const conversations = new Map(); // conversationId -> { id, sessionId, createdAt, messages[] }
-const sessionConversations = new Map(); // sessionId -> { conversationIds: [], createdAt }
+// ========================
+// 会話管理（セッションベース、メモリ内）
+// ========================
+const conversations = new Map(); // 会話 ID をキーとして、会話データを保存
+const sessionConversations = new Map(); // セッション ID をキーとして、会話 ID リストを保存
 
 function getOrCreateSession(sessionId) {
   if (!sessionConversations.has(sessionId)) {
