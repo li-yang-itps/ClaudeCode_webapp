@@ -24,11 +24,31 @@
 - Node.js 14+ と npm
 - AWS Bedrock 認証情報（推奨）または Claude API キー
 
-## インストール手順
+## 🚀 インストール手順
+
+### クイックスタート（推奨）
+
+Makefile を使用した最速セットアップ:
+
+```bash
+# プロジェクトをクローン
+git clone https://github.com/li-yang-itps/ClaudeCode_webapp.git
+cd ClaudeCode_webapp
+
+# ワンコマンドセットアップ
+make setup
+
+# サーバーを起動
+make start
+```
+
+ブラウザで `http://localhost:3002` を開きます。
+
+### 手動インストール
 
 ```bash
 # プロジェクトディレクトリに入る
-cd claudecode_webapp
+cd ClaudeCode_webapp
 
 # 依存関係をインストール（初回実行時）
 npm install
@@ -38,6 +58,22 @@ npm start
 ```
 
 その後、ブラウザで `http://localhost:3002` を開きます。
+
+### 詳細なガイド
+
+詳しい設定方法やトラブルシューティングは [DEPLOYMENT.md](./DEPLOYMENT.md) を参照してください。
+
+### Makefile コマンド
+
+```bash
+make setup      # 初期セットアップ（推奨）
+make start      # サーバーを起動
+make install    # npm 依存関係をインストール
+make dev        # 開発モードで起動
+make doctor     # 環境を診断
+make clean      # クリーンアップ
+make help       # コマンド一覧を表示
+```
 
 ## 使用方法
 
@@ -75,13 +111,17 @@ npm start
 | `AWS_REGION` | AWS リージョン（デフォルト: ap-northeast-1） | ❌ |
 | `PORT` | サーバーポート（デフォルト: 3002） | ❌ |
 
+詳細は [.env.example](./.env.example) を参照してください。
+
 ## プロジェクト構造
 
 ```
-claudecode_webapp/
+ClaudeCode_webapp/
 ├── server.js              # Express バックエンドサーバー
 ├── package.json           # プロジェクト設定
-├── .env                   # 環境変数ファイル
+├── Makefile              # ワンコマンドセットアップスクリプト
+├── DEPLOYMENT.md         # 詳細な展開ガイド
+├── .env.example          # 環境変数テンプレート
 ├── .gitignore            # Git 無視ルール
 ├── README.md             # プロジェクト説明（このファイル）
 ├── public/
@@ -169,6 +209,8 @@ Content-Type: multipart/form-data
 - API キーが有効で期限切れでないか確認
 - ネットワーク接続を確認
 
+詳細は [DEPLOYMENT.md](./DEPLOYMENT.md#トラブルシューティング) を参照してください。
+
 ### 問題: ファイルが大きすぎる
 - ファイルサイズを 100MB 以内に保つ
 - 大きなファイルを分割することを検討
@@ -184,3 +226,4 @@ MIT
 ## サポート
 
 問題または提案がある場合は、GitHub Issues を作成してください。
+https://github.com/li-yang-itps/ClaudeCode_webapp/issues
